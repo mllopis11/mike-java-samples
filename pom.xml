@@ -1,191 +1,205 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>mike.samples</groupId>
-	<artifactId>java-samples</artifactId>
-	<version>1.0-SNAPSHOT</version>
-	<name>${project.artifactId}</name>
-	<description>Java samples parent POM</description>
-	<packaging>pom</packaging>
+    <groupId>mike.samples</groupId>
+    <artifactId>java-samples</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>${project.artifactId}</name>
+    <description>Java samples parent POM</description>
+    <packaging>pom</packaging>
 
-	<organization>
-		<name>Mike</name>
-	</organization>
+    <organization>
+        <name>Mike</name>
+    </organization>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<application.name>Java-Samples</application.name>
+        <application.name>Java-Samples</application.name>
 
-		<!-- Compilers -->
-		<java.version>17</java.version>
-		<maven.compiler.source>${java.version}</maven.compiler.source>
-		<maven.compiler.target>${java.version}</maven.compiler.target>
+        <!-- Compilers -->
+        <java.version>17</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
 
-		<maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss</maven.build.timestamp.format>
+        <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss</maven.build.timestamp.format>
 
-		<!-- Maven plugins -->
-		<maven.plugin.compiler.version>3.8.1</maven.plugin.compiler.version>
-		<maven.plugin.jar.version>3.2.0</maven.plugin.jar.version>
-		<maven.plugin.resources.version>3.2.0</maven.plugin.resources.version>
-		<maven.plugin.source.version>3.2.1</maven.plugin.source.version>
-		<maven.plugin.javadoc.version>3.1.1</maven.plugin.javadoc.version>
-		<maven.plugin.release.version>3.0.0-M1</maven.plugin.release.version>
-		<maven.plugin.surefire.version>3.0.0-M5</maven.plugin.surefire.version>
-		<maven.plugin.failsafe.version>3.0.0-M5</maven.plugin.failsafe.version>
+        <!-- Maven plugins -->
+        <maven.plugin.compiler.version>3.8.1</maven.plugin.compiler.version>
+        <maven.plugin.jar.version>3.2.0</maven.plugin.jar.version>
+        <maven.plugin.resources.version>3.2.0</maven.plugin.resources.version>
+        <maven.plugin.source.version>3.2.1</maven.plugin.source.version>
+        <maven.plugin.javadoc.version>3.1.1</maven.plugin.javadoc.version>
+        <maven.plugin.release.version>3.0.0-M1</maven.plugin.release.version>
+        <maven.plugin.surefire.version>3.0.0-M5</maven.plugin.surefire.version>
+        <maven.plugin.failsafe.version>3.0.0-M5</maven.plugin.failsafe.version>
 
-		<!-- Java -->
-		<javax.inject.version>1</javax.inject.version>
-		<javax.validation.version>2.0.1.Final</javax.validation.version>
+        <!-- Java -->
+        <javax.inject.version>1</javax.inject.version>
+        <javax.validation.version>2.0.1.Final</javax.validation.version>
 
-		<!-- Loggers -->
-		<slf4j.version>1.7.32</slf4j.version>
-		<logback.version>1.2.5</logback.version>
+        <!-- Loggers -->
+        <slf4j.version>1.7.32</slf4j.version>
+        <logback.version>1.2.5</logback.version>
 
-		<!-- Tests -->
-		<junit-jupiter.version>5.7.2</junit-jupiter.version>
-		<assertj.version>3.20.2</assertj.version>
-	</properties>
+        <!-- Tests -->
+        <junit-jupiter.version>5.7.2</junit-jupiter.version>
+        <assertj.version>3.20.2</assertj.version>
+    </properties>
 
-	<dependencyManagement>
-		<dependencies>
-			<!-- Java -->
-			<dependency>
-				<groupId>javax.inject</groupId>
-				<artifactId>javax.inject</artifactId>
-				<version>${javax.inject.version}</version>
-			</dependency>
+    <dependencyManagement>
+        <dependencies>
+            <!-- Java -->
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>${javax.inject.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>javax.validation</groupId>
-				<artifactId>validation-api</artifactId>
-				<version>${javax.validation.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${javax.validation.version}</version>
+            </dependency>
 
-			<!-- Loggers -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${slf4j.version}</version>
-			</dependency>
+            <!-- Loggers -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-classic</artifactId>
-				<version>${logback.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
 
-			<!-- Apache Utilities -->
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-text</artifactId>
-				<version>${apache-text.version}</version>
-			</dependency>
+            <!-- Apache Utilities -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>${apache-text.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-compress</artifactId>
-				<version>${apache-compress.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-compress</artifactId>
+                <version>${apache-compress.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>commons-io</groupId>
-				<artifactId>commons-io</artifactId>
-				<version>${commons-io.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>org.apache.tika</groupId>
-				<artifactId>tika-core</artifactId>
-				<version>${apache.tika.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-core</artifactId>
+                <version>${apache.tika.version}</version>
+            </dependency>
 
-			<!-- Tests -->
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter</artifactId>
-				<version>${junit-jupiter.version}</version>
-				<scope>test</scope>
-			</dependency>
+            <!-- Tests -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
 
-			<dependency>
-				<groupId>org.assertj</groupId>
-				<artifactId>assertj-core</artifactId>
-				<version>${assertj.version}</version>
-				<scope>test</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-	<dependencies>
-		<!-- Tests -->
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<scope>test</scope>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-core</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
+        <!-- Tests -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <module>./miscellaneous</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.plugin.compiler.version}</version>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-					<showWarnings>true</showWarnings>
-					<showDeprecation>true</showDeprecation>
-				</configuration>
-			</plugin>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
                 <version>${maven.plugin.resources.version}</version>
-				<configuration>
-					<escapeString>\</escapeString>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
+                <configuration>
+                    <escapeString>\</escapeString>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
                 <version>${maven.plugin.source.version}</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
-			<!-- For JUnit5 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
+            <!-- For JUnit5 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.plugin.surefire.version}</version>
-			</plugin>
+            </plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven.plugin.failsafe.version}</version>
-			</plugin>
-		</plugins>
-	</build>
+            </plugin>
+        </plugins>
+    </build>
 </project>
