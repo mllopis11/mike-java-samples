@@ -1,2 +1,2 @@
-# mike-java-samples
-Java code examples and tests
+# Java Code Samples
+
