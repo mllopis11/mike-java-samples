@@ -12,5 +12,26 @@
     
     <properties>
         <application.name>Java-Samples</application.name>
+        
+        <!-- Tests -->
+        <junit-jupiter.version>5.7.2</junit-jupiter.version>
+        <assertj.version>3.20.2</assertj.version> 
     </properties>
+    
+    <dependencies>
+        <!-- Tests -->
+        <dependency>
+             <groupId>org.junit.jupiter</groupId>
+             <artifactId>junit-jupiter</artifactId>
+             <version>${junit-jupiter.version}</version>
+             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency> 
+    </dependencies>
 </project>
