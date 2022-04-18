@@ -1,33 +1,34 @@
-package mike.samples.test.spel.model;
+package mike.samples.test.spel.domain;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class FooValueFactory {
+public class FieldValueFactory {
 
-    private FooValueFactory() {}
+    private FieldValueFactory() {}
     
-    public static FooValue of(String name, Object objValue) {
-	FooValueType type = FooValueType.CHAR;
+    public static FieldValue of(String name, Object objValue) {
+	FieldType type = FieldType.CHAR;
 	
 	if ( objValue instanceof String ) {
-	    type = FooValueType.CHAR;
+	    type = FieldType.CHAR;
 	} else if ( objValue instanceof LocalDate ) {
-	    type = FooValueType.DATE;
+	    type = FieldType.DATE;
 	} else if ( objValue instanceof Long || objValue instanceof Integer) {
-	    type = FooValueType.NUMBER;
+	    type = FieldType.NUMBER;
 	} else if ( objValue instanceof Double || objValue instanceof BigDecimal) {
-	    type = FooValueType.FLOAT;
+	    type = FieldType.FLOAT;
 	} else {
 	    String objType = objValue == null ? null : objValue.getClass().getSimpleName();
-	    throw new MapperException("Unsupported value type '%s' for field '%s'", objType, name);
+	    throw new ExpressionException("Unsupported value type '%s' for field '%s'", objType, name);
 	}
 	
-	return new FooValue(type, name, String.valueOf(objValue), objValue);
+	String rawValue = objValue != null ? String.valueOf(objValue) : "";
+	return new FieldValue(type, name, rawValue, objValue);
     }
     
-    public static FooValue of(FooValueType type, String name, String rawValue) {
+    public static FieldValue of(FieldType type, String name, String rawValue) {
 	Object objValue = switch(type) {
 		case CHAR -> rawValue;
 		case DATE -> rawValue.isBlank() ? null : LocalDate.parse(rawValue, DateTimeFormatter.BASIC_ISO_DATE);
@@ -35,6 +36,6 @@ public class FooValueFactory {
 		case FLOAT -> rawValue.isBlank() ? Double.valueOf(0) : Double.valueOf(rawValue);
 		};
 	
-	return new FooValue(type, name, rawValue, objValue);
+	return new FieldValue(type, name, rawValue, objValue);
     }
 }

@@ -8,14 +8,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.springframework.expression.Expression;
-import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 
-import mike.samples.test.spel.model.FooValue;
-import mike.samples.test.spel.model.FooValueFactory;
-import mike.samples.test.spel.model.FooValues;
-import mike.samples.test.spel.model.FooValueType;
+import mike.samples.test.spel.domain.FieldType;
+import mike.samples.test.spel.domain.FieldValueFactory;
+import mike.samples.test.spel.domain.FieldValues;
+import mike.samples.test.spel.domain.ValueExpression;
 
 /**
  * SPeL Date Comparison.
@@ -28,10 +28,11 @@ import mike.samples.test.spel.model.FooValueType;
  * @author Mike
  */
 @DisplayName("FooValueDate")
-class FooValueDateTest {
+class FieldValueDateTest {
 
+    private static final Logger log = LoggerFactory.getLogger(FieldValueDateTest.class);
+    
     private static final StandardEvaluationContext evaluationContext = new StandardEvaluationContext();
-    private static final SpelExpressionParser spelExpressionParser = new SpelExpressionParser();
     
     @BeforeAll
     static void init() {
@@ -42,10 +43,13 @@ class FooValueDateTest {
     @CsvSource({ "'', false", "20210130, true", "20210115, true", "20210114, false" })
     void should_return_expected_boolean_when_asofdate_ge_20210115(String asOfDate, boolean expected) {
 	
-	FooValue fooValue = FooValueFactory.of(FooValueType.DATE, "AS_OF_DATE", asOfDate);
-	FooValues fooValues = FooValues.of(fooValue);
-	Expression expression = this.compileCondition("ge");
-	boolean eval = expression.getValue(evaluationContext, fooValues, Boolean.class);
+	var dateValue = FieldValueFactory.of(FieldType.DATE, "AS_OF_DATE", asOfDate);
+	var dateValues = FieldValues.of(dateValue);
+	var dateExpression = ValueExpression.of("$AS_OF_DATE ge #GV_ASOFDATE", evaluationContext);
+
+	log.debug("ValueExpressions: {} [fields: {}]", dateExpression.getPreparedExpressions(), dateExpression.getReferencedFields());
+	
+	var eval = this.apply(dateExpression, dateValues);
 	
 	assertThat(eval).isEqualTo(expected);
     }
@@ -54,17 +58,23 @@ class FooValueDateTest {
     @CsvSource({ "'', true", "20210130, false", "20210115, true", "20210114, true" })
     void should_return_expected_boolean_when_asofdate_le_20210115(String asOfDate, boolean expected) {
 	
-	FooValue fooValue = FooValueFactory.of(FooValueType.DATE, "AS_OF_DATE", asOfDate);
-	FooValues fooValues = FooValues.of(fooValue);
-	Expression expression = this.compileCondition("le");
-	boolean eval = expression.getValue(evaluationContext, fooValues, Boolean.class);
+	var dateValue = FieldValueFactory.of(FieldType.DATE, "AS_OF_DATE", asOfDate);
+	var dateValues = FieldValues.of(dateValue);
+	var dateExpression = ValueExpression.of("$AS_OF_DATE le #GV_ASOFDATE", evaluationContext);
+
+	log.debug("ValueExpressions: {} [fields: {}]", dateExpression.getPreparedExpressions(), dateExpression.getReferencedFields());
+	
+	var eval = this.apply(dateExpression, dateValues);
 	
 	assertThat(eval).isEqualTo(expected);
     }
     
-    private Expression compileCondition(String relationalOperator) {
-	String condition = String.format("values['%s'].getObjValue() %s #GV_ASOFDATE", "AS_OF_DATE", relationalOperator);
-	return spelExpressionParser.parseExpression(condition);
+    private boolean apply(ValueExpression ve, FieldValues fv) {
+	return ve.getExpressions().stream()
+		.map(exp -> exp.getValue(evaluationContext, fv, Boolean.class))
+		.filter(rv -> rv != null)
+		.findFirst()
+		.orElse(Boolean.FALSE);
     }
 }
 

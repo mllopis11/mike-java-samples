@@ -1,20 +1,20 @@
-package mike.samples.test.spel.model;
+package mike.samples.test.spel.domain;
 
-public class FooValue {
+public class FieldValue {
 
-    private final FooValueType type;
+    private final FieldType type;
     private final String name;
     private final String rawValue;
     private final Object objValue;
 
-    protected FooValue(FooValueType type, String name, String rawValue, Object objValue) {
+    protected FieldValue(FieldType type, String name, String rawValue, Object objValue) {
 	this.type = type;
 	this.name = name;
 	this.rawValue = rawValue;
 	this.objValue = objValue;
     }
 
-    public FooValueType getType() {
+    public FieldType getType() {
         return type;
     }
 

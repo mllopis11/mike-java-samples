@@ -15,12 +15,21 @@
     <description>Miscellaneous samples and tests</description>
     <packaging>jar</packaging>
 
+    <properties>
+        <spring-expression.version>5.3.13</spring-expression.version>
+    </properties>
+    
     <dependencies>
-        <!-- SPel: Spring expressino -->
+        <!-- SPeL: Spring expression Language -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
-            <version>5.3.13</version>
+            <version>${spring-expression.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
         </dependency>
     </dependencies>
 </project> 
