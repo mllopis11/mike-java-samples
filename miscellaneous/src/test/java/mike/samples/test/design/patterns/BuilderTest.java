@@ -11,11 +11,11 @@ class BuilderTest {
     @CsvSource({ "1, foo" })
     void should_build_a_simple_bean_when(int index, String name) {
 
-	var ex = SimpleBean.builder().index(index).name(name);
+        var ex = SimpleBean.builder().index(index).name(name);
 
-	assertThat(ex.index()).isEqualTo(index);
-	assertThat(ex.name()).isEqualTo(name);
-	assertThat(ex.toString()).isNotBlank().startsWith("SimpleBean");
+        assertThat(ex.index()).isEqualTo(index);
+        assertThat(ex.name()).isEqualTo(name);
+        assertThat(ex.toString()).isNotBlank().startsWith("SimpleBean");
     }
 }
 
@@ -25,36 +25,36 @@ class SimpleBean {
     private final String name;
 
     private SimpleBean(final int index, final String name) {
-	this.index = index;
-	this.name = name;
+        this.index = index;
+        this.name = name;
     }
 
     public int index() {
-	return index;
+        return index;
     }
 
     public String name() {
-	return name;
+        return name;
     }
 
     @Override
     public String toString() {
-	return String.format("SimpleBean [index=%s, name=%s]", index, name);
+        return String.format("SimpleBean [index=%s, name=%s]", index, name);
     }
 
     /**
      * Builder
      */
     public static Builder builder() {
-	return index -> name -> new SimpleBean(index, name);
+        return index -> name -> new SimpleBean(index, name);
     }
 
     public interface Builder {
-	
-	BeanName index(int index);
 
-	interface BeanName {
-	    SimpleBean name(final String name);
-	}
+        BeanName index(int index);
+
+        interface BeanName {
+            SimpleBean name(final String name);
+        }
     }
 }
