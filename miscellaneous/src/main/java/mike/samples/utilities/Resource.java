@@ -7,9 +7,11 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Properties;
+import java.util.function.Predicate;
 
 /**
  * Resource (Path, URL, URI) helper.
@@ -40,7 +42,7 @@ public class Resource {
     public static Resource of(String name) {
 	return new Resource(name);
     }
-    
+
     /**
      * Private Constructor.
      * 
@@ -122,6 +124,14 @@ public class Resource {
 	} else {
 	    return url.openStream();
 	}
+    }
+    
+    public StreamReader streamReader() {
+	return this.streamReader(s -> true);
+    }
+    
+    public StreamReader streamReader(Predicate<String> filter) {
+	return new ResourceStreamReader(this, filter, StandardCharsets.ISO_8859_1);
     }
     
     /**
