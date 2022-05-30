@@ -45,7 +45,7 @@
         <apache-text.version>1.9</apache-text.version>
         <apache-compress.version>1.21</apache-compress.version>
         <commons-io.version>2.11.0</commons-io.version>
-        <apache.tika.version>2.0.0</apache.tika.version>
+        <apache.tika.version>2.4.0</apache.tika.version>
         
         <!-- Loggers -->
         <slf4j.version>1.7.32</slf4j.version>

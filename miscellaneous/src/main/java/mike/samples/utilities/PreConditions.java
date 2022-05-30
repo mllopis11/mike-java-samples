@@ -75,7 +75,7 @@ public class PreConditions {
 	    PreConditions.test(!map.isEmpty(), message, args);
 	} else {
 	    throw new UnsupportedOperationException(
-		    String.format("object type not supported: %s", obj.getClass().getName()));
+		    String.format("Function::notEmpty: object type '%s' not supported", obj.getClass().getName()));
 	}
 	
 	return obj;
