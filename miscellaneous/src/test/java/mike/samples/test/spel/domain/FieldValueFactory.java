@@ -18,7 +18,7 @@ public class FieldValueFactory {
 	} else if ( objValue instanceof Long || objValue instanceof Integer) {
 	    type = FieldType.NUMBER;
 	} else if ( objValue instanceof Double || objValue instanceof BigDecimal) {
-	    type = FieldType.FLOAT;
+	    type = FieldType.REAL;
 	} else {
 	    String objType = objValue == null ? null : objValue.getClass().getSimpleName();
 	    throw new ExpressionException("Unsupported value type '%s' for field '%s'", objType, name);
@@ -33,7 +33,7 @@ public class FieldValueFactory {
 		case CHAR -> rawValue;
 		case DATE -> rawValue.isBlank() ? null : LocalDate.parse(rawValue, DateTimeFormatter.BASIC_ISO_DATE);
 		case NUMBER -> rawValue.isBlank() ? 0 : Long.parseLong(rawValue);
-		case FLOAT -> rawValue.isBlank() ? Double.valueOf(0) : Double.valueOf(rawValue);
+		case REAL -> rawValue.isBlank() ? Double.valueOf(0) : Double.valueOf(rawValue);
 		};
 	
 	return new FieldValue(type, name, rawValue, objValue);

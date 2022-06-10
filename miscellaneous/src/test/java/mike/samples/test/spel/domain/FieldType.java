@@ -5,5 +5,5 @@ public enum FieldType {
     CHAR,
     DATE,
     NUMBER,
-    FLOAT;
+    REAL;
 }

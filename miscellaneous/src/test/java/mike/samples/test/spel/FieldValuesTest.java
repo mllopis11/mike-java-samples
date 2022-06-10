@@ -33,12 +33,12 @@ class FieldValuesTest {
 		List.of(FieldValueFactory.of(FieldType.CHAR, "FD_CHAR", "My_Value"), 
 			FieldValueFactory.of(FieldType.DATE, "FD_DATE", "20210112"),
 			FieldValueFactory.of(FieldType.DATE, "FD_DATE_EMPTY", ""),
-			FieldValueFactory.of(FieldType.NUMBER, "FD_NUMBER", "+54321"),
-			FieldValueFactory.of(FieldType.NUMBER, "FD_NUMBER_EMPTY", ""),
-			FieldValueFactory.of(FieldType.NUMBER, "FD_NUMBER_LONG", "1234567890000"),
-			FieldValueFactory.of(FieldType.NUMBER, "FD_INTEGER", "-1234"),
-			FieldValueFactory.of(FieldType.FLOAT, "FD_DOUBLE", "-987.25"),
-			FieldValueFactory.of(FieldType.FLOAT, "FD_DOUBLE_EMPTY", ""))
+			FieldValueFactory.of(FieldType.NUMBER, "FD_NUM", "+54321"),
+			FieldValueFactory.of(FieldType.NUMBER, "FD_NUM_EMPTY", ""),
+			FieldValueFactory.of(FieldType.NUMBER, "FD_NUM_LONG", "1234567890000"),
+			FieldValueFactory.of(FieldType.NUMBER, "FD_INT", "-1234"),
+			FieldValueFactory.of(FieldType.REAL, "FD_REAL", "-987.25"),
+			FieldValueFactory.of(FieldType.REAL, "FD_REAL_EMPTY", ""))
 		);
 	
 	assertThat(fooValues.getValues()).hasSize(9);
