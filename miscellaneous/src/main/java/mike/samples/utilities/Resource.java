@@ -24,7 +24,7 @@ public class Resource {
     private final String name;
     private final URL url;
     private final boolean localResource;
-    private final boolean found;
+    private final boolean exists;
 
     /**
      * @param file    resource file path
@@ -60,28 +60,28 @@ public class Resource {
 	if (localResource) {
 	    try {
 		this.url = path.toUri().toURL();
-		this.found = true;
+		this.exists = true;
 	    } catch (MalformedURLException mue) {
 		throw new IllegalArgumentException("convert target path to URL: " + name, mue);
 	    }
 	} else {
 	    this.url = ClassLoader.getSystemResource(this.name);
-	    this.found = this.url != null;
+	    this.exists = this.url != null;
 	}
     }
 
     /**
      * @return true if the resource exists
      */
-    public boolean found() {
-	return this.found;
+    public boolean exists() {
+	return this.exists;
     }
 
     /**
      * @return true if the resource not exists
      */
-    public boolean notFound() {
-	return !this.found();
+    public boolean notExists() {
+	return !this.exists();
     }
 
     /**
@@ -115,7 +115,7 @@ public class Resource {
      */
     public InputStream getInputStream() throws IOException {
 
-	if (!this.found()) {
+	if (!this.exists()) {
 	    throw new FileNotFoundException("resource does not exists: " + this.name);
 	}
 
@@ -135,15 +135,14 @@ public class Resource {
     }
     
     /**
-     * @return resource as properties object. the resource must be a properties
-     *         file.
+     * @return resource as properties object. the resource must be a properties file.
      * @throws IOException if any IO errors occurs
      */
     public Properties getProperties() throws IOException {
 
 	var properties = new Properties();
 
-	if (this.found()) {
+	if (this.exists()) {
 	    try (var is = this.getInputStream();) {
 		properties.load(is);
 	    }
