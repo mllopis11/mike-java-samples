@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import mike.bootstrap.utilities.nio.files.Resource;
+import mike.bootstrap.utilities.nio.files.StreamReader;
 import mike.samples.domain.TextService;
-import mike.samples.utilities.Resource;
-import mike.samples.utilities.StreamReader;
 
 /**
  * ExecutorService <b>WorkStealingPool</b> is a ForkJoinPool with preconfigured default parameters:<br>

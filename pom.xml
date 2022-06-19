@@ -3,10 +3,16 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>mike.bootstrap</groupId>
+        <artifactId>bootstrap-dependencies</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <groupId>mike.samples</groupId>
     <artifactId>java-samples</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1-SNAPSHOT</version>
     <name>${project.artifactId}</name>
     <description>Java samples parent POM</description>
     <packaging>pom</packaging>
@@ -29,104 +35,14 @@
 
         <!-- Maven plugins -->
         <maven.plugin.compiler.version>3.8.1</maven.plugin.compiler.version>
-        <maven.plugin.jar.version>3.2.0</maven.plugin.jar.version>
-        <maven.plugin.resources.version>3.2.0</maven.plugin.resources.version>
-        <maven.plugin.source.version>3.2.1</maven.plugin.source.version>
-        <maven.plugin.javadoc.version>3.1.1</maven.plugin.javadoc.version>
-        <maven.plugin.release.version>3.0.0-M1</maven.plugin.release.version>
-        <maven.plugin.surefire.version>3.0.0-M5</maven.plugin.surefire.version>
-        <maven.plugin.failsafe.version>3.0.0-M5</maven.plugin.failsafe.version>
-
-        <!-- Java -->
-        <javax.inject.version>1</javax.inject.version>
-        <javax.validation.version>2.0.1.Final</javax.validation.version>
-
-        <!-- Utilities (Apache) -->
-        <apache-text.version>1.9</apache-text.version>
-        <apache-compress.version>1.21</apache-compress.version>
-        <commons-io.version>2.11.0</commons-io.version>
-        <apache.tika.version>2.4.0</apache.tika.version>
-        
-        <!-- Loggers -->
-        <slf4j.version>1.7.32</slf4j.version>
-        <logback.version>1.2.5</logback.version>
-
-        <!-- Tests -->
-        <junit-jupiter.version>5.7.2</junit-jupiter.version>
-        <assertj.version>3.20.2</assertj.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- Java -->
-            <dependency>
-                <groupId>javax.inject</groupId>
-                <artifactId>javax.inject</artifactId>
-                <version>${javax.inject.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>${javax.validation.version}</version>
-            </dependency>
-
-            <!-- Loggers -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
-            </dependency>
-
-            <!-- Apache Utilities -->
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-text</artifactId>
-                <version>${apache-text.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-compress</artifactId>
-                <version>${apache-compress.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-io</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>${commons-io.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.tika</groupId>
-                <artifactId>tika-core</artifactId>
-                <version>${apache.tika.version}</version>
-            </dependency>
-
-            <!-- Tests -->
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter</artifactId>
-                <version>${junit-jupiter.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.assertj</groupId>
-                <artifactId>assertj-core</artifactId>
-                <version>${assertj.version}</version>
-                <scope>test</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
+        <dependency>
+            <groupId>mike.bootstrap</groupId>
+            <artifactId>bootstrap-utilities</artifactId>
+        </dependency>
+        
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -154,58 +70,4 @@
     <modules>
         <module>./miscellaneous</module>
     </modules>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.plugin.compiler.version}</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                    <showWarnings>true</showWarnings>
-                    <showDeprecation>true</showDeprecation>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>${maven.plugin.resources.version}</version>
-                <configuration>
-                    <escapeString>\</escapeString>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>${maven.plugin.source.version}</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- For JUnit5 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.plugin.surefire.version}</version>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${maven.plugin.failsafe.version}</version>
-            </plugin>
-        </plugins>
-    </build>
 </project>
