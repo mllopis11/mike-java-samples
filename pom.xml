@@ -36,6 +36,11 @@
         <!-- Maven plugins -->
         <maven.plugin.compiler.version>3.8.1</maven.plugin.compiler.version>
     </properties>
+    
+    <modules>
+        <module>miscellaneous</module>
+        <module>easy-rules</module>
+    </modules>
 
     <dependencies>
         <dependency>
@@ -66,8 +71,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <modules>
-        <module>./miscellaneous</module>
-    </modules>
 </project>
