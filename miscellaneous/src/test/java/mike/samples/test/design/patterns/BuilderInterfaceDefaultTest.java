@@ -16,9 +16,9 @@ class BuilderInterfaceDefaultTest {
         var file = Path.of("foo/bar.txt");
         var reader = FileReader.create().file(file).iso88591().noFilter();
         
-        assertThat(reader.getFile()).isEqualTo(file);
-        assertThat(reader.getCharset()).isEqualTo(StandardCharsets.ISO_8859_1);
-        assertThat(reader.getRecordFilter()).isNotNull();
+        assertThat(reader.file()).isEqualTo(file);
+        assertThat(reader.charset()).isEqualTo(StandardCharsets.ISO_8859_1);
+        assertThat(reader.recordFilter()).isNotNull();
     }
 }
 
@@ -34,15 +34,15 @@ class FileReader {
         this.recordFilter = recordFilter;
     }
     
-    public Path getFile() {
+    public Path file() {
         return file;
     }
     
-    public Charset getCharset() {
+    public Charset charset() {
         return charset;
     }
     
-    public Predicate<String> getRecordFilter() {
+    public Predicate<String> recordFilter() {
         return recordFilter;
     }
     
@@ -60,6 +60,10 @@ class FileReader {
             
             default RecordFilter iso88591() {
                 return this.charset(StandardCharsets.ISO_8859_1);
+            }
+            
+            default RecordFilter utf8() {
+                return this.charset(StandardCharsets.UTF_8);
             }
         }
         
